@@ -4,6 +4,7 @@ import { NavigationContainer, DefaultTheme} from "@react-navigation/native";
 import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeStackNavigator from "./src/routes";
+import Home from "./src/views/HomeScreen/Home";
 import SignUp from '../buraqNative/src/views/AuthScreen/AuthScreen';
 import Login from '../buraqNative/src/views/LoginScreen/LoginScreen';
 
@@ -42,7 +43,7 @@ function Stacks() {
       />
       <Stack.Screen
         name="Tabs"
-        component={HomeStackNavigator}
+        component={Home}
         options={{
           headerShown: false,
         }}
@@ -57,6 +58,7 @@ function Stacks() {
     </Stack.Navigator>
   );
 }
+
 const theme = {
     ...DefaultTheme,
     colors: {
@@ -64,6 +66,7 @@ const theme = {
         border: "transparent",
     },
 };
+
 function MainScreen(){
     return(
         <NavigationContainer theme={theme}>
