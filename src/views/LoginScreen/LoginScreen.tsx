@@ -15,6 +15,7 @@ import {
 
 import LinearGradient from 'react-native-linear-gradient'
 import { COLORS, SIZES, FONTS, icons, images } from '../../constants';
+import Styles from "./styles";
 
 interface Props {
     navigation:any
@@ -31,25 +32,16 @@ const Login = ({ navigation}:Props) => {
     function renderHeader() {
         return (
             <TouchableOpacity
-                style={{
-                    flexDirection: 'row',
-                    alignItems: "center",
-                    marginTop: SIZES.padding * 6,
-                    paddingHorizontal: SIZES.padding * 2
-                }}
+                style={Styles.container}
                 onPress={() => navigation.navigate("Signup")}
             >
                 <Image
                     source={icons.back}
                     resizeMode="contain"
-                    style={{
-                        width: 20,
-                        height: 20,
-                        tintColor: COLORS.white
-                    }}
+                    style={Styles.bgBack}
                 />
 
-                <Text style={{ marginLeft: SIZES.padding * 1.5, color: COLORS.white, ...FONTS.h4 }}>Sign Up</Text>
+                <Text style={Styles.signUp}>Sign Up</Text>
             </TouchableOpacity>
         )
     }
@@ -57,12 +49,7 @@ const Login = ({ navigation}:Props) => {
     function renderLogo() {
         return (
             <View
-                style={{
-                    marginTop: SIZES.padding * 5,
-                    height: 100,
-                    alignItems: 'center',
-                    justifyContent: 'center'
-                }}
+                style={Styles.logoContainer}
             >
                 <Image
                     source={images.buraqLogo}
@@ -78,23 +65,13 @@ const Login = ({ navigation}:Props) => {
     function renderForm() {
         return (
             <View
-                style={{
-                    marginTop: SIZES.padding * 3,
-                    marginHorizontal: SIZES.padding * 3,
-                }}
+                style={Styles.formContainer}
             >
                 {/* Full Name */}
-                <View style={{ marginTop: SIZES.padding * 3 }}>
-                    <Text style={{ color: COLORS.lightGreen, ...FONTS.body3 }}>Full Name</Text>
+                <View style={Styles.subContainer}>
+                    <Text style={Styles.heading}>Full Name</Text>
                     <TextInput
-                        style={{
-                            marginVertical: SIZES.padding,
-                            borderBottomColor: COLORS.white,
-                            borderBottomWidth: 1,
-                            height: 40,
-                            color: COLORS.white,
-                            ...FONTS.body3
-                        }}
+                        style={Styles.textInput}
                         placeholder="Enter Full Name"
                         placeholderTextColor={COLORS.white}
                         selectionColor={COLORS.white}
@@ -102,39 +79,22 @@ const Login = ({ navigation}:Props) => {
                 </View>
 
                 {/* Password */}
-                <View style={{ marginTop: SIZES.padding * 2 }}>
-                    <Text style={{ color: COLORS.lightGreen, ...FONTS.body3 }}>Password</Text>
+                <View style={Styles.passContainer}>
+                    <Text style={Styles.passField}>Password</Text>
                     <TextInput
-                        style={{
-                            marginVertical: SIZES.padding,
-                            borderBottomColor: COLORS.white,
-                            borderBottomWidth: 1,
-                            height: 40,
-                            color: COLORS.white,
-                            ...FONTS.body3
-                        }}
+                        style={Styles.passInput}
                         placeholder="Enter Password"
                         placeholderTextColor={COLORS.white}
                         selectionColor={COLORS.white}
                         secureTextEntry={!showPassword}
                     />
                     <TouchableOpacity
-                        style={{
-                            position: 'absolute',
-                            right: 0,
-                            bottom: 10,
-                            height: 30,
-                            width: 30
-                        }}
+                        style={Styles.passContent}
                         onPress={() => setShowPassword(!showPassword)}
                     >
                         <Image
                             source={showPassword ? icons.disable_eye : icons.eye}
-                            style={{
-                                height: 20,
-                                width: 20,
-                                tintColor: COLORS.white
-                            }}
+                            style={Styles.tintContent}
                         />
                     </TouchableOpacity>
                 </View>
@@ -144,18 +104,12 @@ const Login = ({ navigation}:Props) => {
 
     function renderButton() {
         return (
-            <View style={{ margin: SIZES.padding * 3 }}>
+            <View style={Styles.btnContainer}>
                 <TouchableOpacity
-                    style={{
-                        height: 60,
-                        backgroundColor: COLORS.black,
-                        borderRadius: SIZES.radius / 1.5,
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                    }}
+                    style={Styles.btnText}
                     onPress={() => navigation.navigate("Tabs")}
                 >
-                    <Text style={{ color: COLORS.white, ...FONTS.h3 }}>Continue</Text>
+                    <Text style={Styles.btnTxt}>Continue</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -166,7 +120,7 @@ const Login = ({ navigation}:Props) => {
         const renderItem = ({ item }:any) => {
             return (
                 <TouchableOpacity
-                    style={{ padding: SIZES.padding, flexDirection: 'row' }}
+                    style={Styles.renderItem}
                     onPress={() => {
                         setSelectedArea(item)
                         setModalVisible(false)
@@ -174,11 +128,7 @@ const Login = ({ navigation}:Props) => {
                 >
                     <Image
                         source={{ uri: item.flag }}
-                        style={{
-                            width: 30,
-                            height: 30,
-                            marginRight: 10
-                        }}
+                        style={Styles.renderImg}
                     />
                     <Text style={{ ...FONTS.body4 }}>{item.name}</Text>
                 </TouchableOpacity>
@@ -194,24 +144,16 @@ const Login = ({ navigation}:Props) => {
                 <TouchableWithoutFeedback
                     onPress={() => setModalVisible(false)}
                 >
-                    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={Styles.modal}>
                         <View
-                            style={{
-                                height: 400,
-                                width: SIZES.width * 0.8,
-                                backgroundColor: COLORS.lightGreen,
-                                borderRadius: SIZES.radius
-                            }}
+                            style={Styles.modalContent}
                         >
                             <FlatList
                                 data={areas}
                                 renderItem={renderItem}
                                 // keyExtractor={(item) => item.code}
                                 showsVerticalScrollIndicator={false}
-                                style={{
-                                    padding: SIZES.padding * 2,
-                                    marginBottom: SIZES.padding * 2
-                                }}
+                                style={Styles.modalList}
                             />
                         </View>
                     </View>

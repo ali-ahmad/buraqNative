@@ -4,7 +4,6 @@ import { NavigationContainer, DefaultTheme} from "@react-navigation/native";
 import {createStackNavigator} from '@react-navigation/stack';
 
 import HomeStackNavigator from "./src/routes";
-import Home from "./src/views/HomeScreen/Home";
 import SignUp from '../buraqNative/src/views/AuthScreen/AuthScreen';
 import Login from '../buraqNative/src/views/LoginScreen/LoginScreen';
 
@@ -43,7 +42,7 @@ function Stacks() {
       />
       <Stack.Screen
         name="Tabs"
-        component={Home}
+        component={HomeStackNavigator}
         options={{
           headerShown: false,
         }}
